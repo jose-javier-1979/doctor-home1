@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Home 1 — Doctor Hernández</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <main id="app"></main>
+
+<script>
+async function loadConfig(){
+  const res = await fetch('./config.json', {cache:'no-store'});
+  return await res.json();
+}
+function el(tag, attrs={}, children=[]){
+  const e=document.createElement(tag);
+  for(const [k,v] of Object.entries(attrs||{})){
+    if(k==='class') e.className=v;
+    else if(k==='html') e.innerHTML=v;
+    else if(k.startsWith('on') && typeof v==='function') e.addEventListener(k.slice(2), v);
+    else e.setAttribute(k,v);
+  }
+  for(const c of (Array.isArray(children)?children:[children])){
+    if(c===null || c===undefined) continue;
+    if(typeof c==='string') e.appendChild(document.createTextNode(c));
+    else e.appendChild(c);
+  }
+  return e;
+}
+function button(cfg, primary=false){
+  const a = el('a', {href: cfg.href, class:'btn ' + (primary?'primary':'ghost'), target: (cfg.new_tab? '_blank':'_self'), rel:(cfg.new_tab?'noopener':'')}, cfg.label);
+  return a;
+}
+function card(item){
+  return el('a', {href:item.href, class:'card', target:'_self'}, [
+    el('img', {src:item.image, class:'card-img', alt:item.title}),
+    el('div', {class:'card-body'}, [
+      el('h3', {class:'card-title'}, item.title),
+      item.meta ? el('p',{class:'card-meta'}, item.meta) : el('p',{class:'card-meta'}, "Ver detalles"),
+      el('span',{class:'card-link'}, [el('span',{class:'btn ghost', style:'height:40px;padding:0 14px;border-radius:14px;font-weight:800;'}, 'Ver')])
+    ])
+  ]);
+}
+function section(titleText, alt=false){
+  return el('section',{class:'section'+(alt?' alt':'')},[
+    el('div',{class:'container'},[
+      el('h2',{class:'h2'}, titleText),
+      el('div',{class:'hr'})
+    ])
+  ]);
+}
+
+(async function init(){
+  const cfg = await loadConfig();
+  const app = document.getElementById('app');
+
+  // HERO
+  const hero = el('section',{class:'section'},[
+    el('div',{class:'container'},[
+      el('div',{class:'hero'},[
+        el('img',{src:cfg.hero.image, class:'hero-img', alt:'Hero'}),
+        el('div',{class:'hero-overlay'},[
+          el('div',{class:'hero-card'},[
+            el('h1',{class:'hero-title'}, cfg.hero.title),
+            el('div',{class:'hero-sub'}, cfg.hero.subtitle),
+            el('p',{class:'hero-desc'}, cfg.hero.description),
+            el('div',{class:'cta-row'},[
+              button(cfg.hero.primary_cta, true),
+              button(cfg.hero.secondary_cta, false),
+            ]),
+            el('div',{class:'quick small'},[
+              el('span',{},'Enlaces rápidos: '),
+              ...cfg.hero.quick_links.flatMap((q,i)=>[
+                el('a',{href:q.href, target:'_self'}, q.label),
+                i < cfg.hero.quick_links.length-1 ? el('span',{},' · ') : null
+              ])
+            ])
+          ])
+        ])
+      ])
+    ])
+  ]);
+  app.appendChild(hero);
+
+  // Primary routes
+  const s1 = section('Rutas principales', true);
+  s1.querySelector('.container').appendChild(el('div',{class:'grid3'}, cfg.primary_routes.map(card)));
+  app.appendChild(s1);
+
+  // Featured services
+  const s2 = section('Servicios destacados', false);
+  const featuredCards = cfg.featured.map(it=>({...it, meta:""}));
+  s2.querySelector('.container').appendChild(el('div',{class:'grid3 featured'}, featuredCards.map(card)));
+  app.appendChild(s2);
+
+  // Process
+  const s3 = section('Cómo trabajamos', true);
+  s3.querySelector('.container').appendChild(el('div',{class:'steps'}, cfg.process_steps.map(st=>
+    el('div',{class:'step'},[
+      el('h4',{}, st.title),
+      el('p',{}, st.text)
+    ])
+  )));
+  s3.querySelector('.container').appendChild(el('div',{style:'margin-top:18px'},[
+    button({label:'Enviar documentación', href: cfg.hero.primary_cta.href, new_tab:true}, true)
+  ]));
+  app.appendChild(s3);
+
+  // Resources + Apps + Team
+  const s4 = section('Biblioteca · Apps · Equipo', false);
+  const c = s4.querySelector('.container');
+  c.appendChild(el('div',{class:'note'},[
+    el('h3',{class:'card-title', style:'margin:0 0 6px 0'}, cfg.resources.title),
+    el('p',{class:'card-meta'}, 'Enlaces oficiales + perfiles profesionales.'),
+    el('div',{class:'badges'}, cfg.resources.items.map(it=> el('a',{class:'badge',href:it.href,target:'_blank',rel:'noopener'}, it.label)))
+  ]));
+  c.appendChild(el('div',{style:'height:14px'}));
+  c.appendChild(el('div',{class:'note'},[
+    el('h3',{class:'card-title', style:'margin:0 0 6px 0'}, cfg.apps.title),
+    el('p',{class:'card-meta'}, cfg.apps.text),
+    el('div',{style:'margin-top:10px'}, [
+      el('a',{href:cfg.apps.cta.href, class:'btn ghost', target:'_self'}, cfg.apps.cta.label)
+    ])
+  ]));
+  c.appendChild(el('div',{style:'height:14px'}));
+  c.appendChild(el('a',{href:cfg.team.href, class:'note', target:'_self', style:'display:block'},[
+    el('div',{class:'grid2'},[
+      el('img',{src:cfg.team.image, style:'width:100%;height:160px;object-fit:cover;border-radius:16px;border:1px solid var(--line)', alt:'Equipo'}),
+      el('div',{},[
+        el('h3',{class:'card-title', style:'margin:0 0 6px 0'}, cfg.team.title),
+        el('p',{class:'card-meta'}, cfg.team.text),
+        el('div',{style:'margin-top:10px'}, [
+          el('span',{class:'btn ghost', style:'height:44px;padding:0 16px;border-radius:14px;font-weight:800;'}, 'Ver equipo')
+        ])
+      ])
+    ])
+  ]));
+  app.appendChild(s4);
+
+  // Final CTA
+  const s5 = section('¿Qué necesitas?', true);
+  s5.querySelector('.container').appendChild(el('div',{class:'footer-cta'}, cfg.final_cta.map(b =>
+    el('a',{
+      class:'btn '+(b.primary?'primary':'ghost'),
+      href:b.href,
+      target:(b.new_tab? '_blank':'_self'),
+      rel:(b.new_tab?'noopener':'')
+    }, b.label)
+  )));
+  s5.querySelector('.container').appendChild(el('p',{class:'small', style:'margin-top:12px'}, 'Sugerencia: si aún no tienes toda la documentación, envía lo que tengas y te diremos viabilidad y próximos pasos.'));
+  app.appendChild(s5);
+
+})();
+</script>
+</body>
+</html>

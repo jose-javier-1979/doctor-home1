@@ -1,0 +1,169 @@
+{
+  "site_name": "Doctor Hernández",
+  "hero": {
+    "title": "Peritaje médico-legal y evaluación interdisciplinar",
+    "subtitle": "Daño corporal, neurológico y psicoeducativo",
+    "description": "Informes claros y defendibles + orientación técnica. Integración médica y psicoeducativa para casos complejos.",
+    "primary_cta": {
+      "label": "Solicitar peritaje",
+      "href": "https://docs.google.com/forms/d/e/1FAIpQLSdvOh7vHWicnpMfEydIf_Zt3ldEX0UzxfB1UBM3NRgDZ1dFuQ/viewform",
+      "new_tab": true
+    },
+    "secondary_cta": {
+      "label": "Reservar reunión",
+      "href": "https://www.doctor-hernandez.com/agenda",
+      "new_tab": true
+    },
+    "quick_links": [
+      {
+        "label": "Menores",
+        "href": "https://www.doctor-hernandez.com/menores"
+      },
+      {
+        "label": "Ciencia",
+        "href": "https://www.doctor-hernandez.com/ciencia"
+      },
+      {
+        "label": "Apps",
+        "href": "https://www.doctor-hernandez.com/apps"
+      },
+      {
+        "label": "Equipo",
+        "href": "https://www.doctor-hernandez.com/equipo"
+      }
+    ],
+    "image": "assets/img/hero-home1.png"
+  },
+  "primary_routes": [
+    {
+      "title": "Peritaje interdisciplinar",
+      "href": "https://www.doctor-hernandez.com/peritaje",
+      "image": "assets/img/card-peritaje.png"
+    },
+    {
+      "title": "Área infanto-juvenil y escolar",
+      "href": "https://www.doctor-hernandez.com/menores",
+      "image": "assets/img/card-menores.png"
+    },
+    {
+      "title": "Valoración neurológica",
+      "href": "https://www.doctor-hernandez.com/neurologia",
+      "image": "assets/img/card-neurologia.png"
+    }
+  ],
+  "featured": [
+    {
+      "title": "Incapacidad",
+      "href": "https://www.doctor-hernandez.com/peritaje/incapacidad",
+      "image": "assets/img/card-peritaje.png"
+    },
+    {
+      "title": "Dependencia / grandes lesionados",
+      "href": "https://www.doctor-hernandez.com/peritaje/dependencia-grandes-lesionados",
+      "image": "assets/img/card-peritaje.png"
+    },
+    {
+      "title": "Mala praxis / negligencias",
+      "href": "https://www.doctor-hernandez.com/peritaje/mala-praxis-negligencias",
+      "image": "assets/img/card-peritaje.png"
+    },
+    {
+      "title": "Familia / custodia (menores)",
+      "href": "https://www.doctor-hernandez.com/menores/familia-custodia",
+      "image": "assets/img/card-menores.png"
+    },
+    {
+      "title": "Acoso escolar",
+      "href": "https://www.doctor-hernandez.com/menores/acoso-escolar",
+      "image": "assets/img/card-menores.png"
+    },
+    {
+      "title": "Causalidad / evidencia",
+      "href": "https://www.doctor-hernandez.com/ciencia/causalidad-plausibilidad",
+      "image": "assets/img/card-ciencia.png"
+    }
+  ],
+  "process_steps": [
+    {
+      "title": "Valoración inicial",
+      "text": "Definimos alcance y preguntas periciales."
+    },
+    {
+      "title": "Revisión documental",
+      "text": "Cronología, coherencia y pruebas clave."
+    },
+    {
+      "title": "Evaluación / escalas",
+      "text": "Clínica/funcional y psicoeducativa cuando procede."
+    },
+    {
+      "title": "Informe + anexos",
+      "text": "Conclusiones operativas y anexos."
+    },
+    {
+      "title": "Ratificación / soporte",
+      "text": "Preparación y ratificación si se solicita."
+    }
+  ],
+  "resources": {
+    "title": "Biblioteca legal y científica",
+    "items": [
+      {
+        "label": "BOE",
+        "href": "https://www.boe.es/"
+      },
+      {
+        "label": "CENDOJ (Jurisprudencia)",
+        "href": "https://www.poderjudicial.es/search/"
+      },
+      {
+        "label": "LinkedIn José",
+        "href": "https://www.linkedin.com/"
+      },
+      {
+        "label": "LinkedIn Eli",
+        "href": "https://www.linkedin.com/"
+      }
+    ]
+  },
+  "apps": {
+    "title": "Apps / Herramientas",
+    "text": "Uso gratuito + descargas premium.",
+    "cta": {
+      "label": "Ver herramientas",
+      "href": "https://www.doctor-hernandez.com/apps"
+    }
+  },
+  "team": {
+    "title": "Equipo",
+    "text": "Interdisciplinar: neurología, bioingeniería y psicopedagogía.",
+    "image": "assets/img/card-equipo.png",
+    "href": "https://www.doctor-hernandez.com/equipo"
+  },
+  "final_cta": [
+    {
+      "label": "Solicitar peritaje",
+      "href": "https://docs.google.com/forms/d/e/1FAIpQLSdvOh7vHWicnpMfEydIf_Zt3ldEX0UzxfB1UBM3NRgDZ1dFuQ/viewform",
+      "primary": true,
+      "new_tab": true
+    },
+    {
+      "label": "Pedir valoración",
+      "href": "https://www.doctor-hernandez.com/agenda",
+      "primary": false,
+      "new_tab": true
+    },
+    {
+      "label": "Reunión técnica",
+      "href": "https://www.doctor-hernandez.com/ciencia",
+      "primary": false,
+      "new_tab": true
+    },
+    {
+      "label": "Agenda",
+      "href": "https://www.doctor-hernandez.com/agenda",
+      "primary": true,
+      "new_tab": true
+    }
+  ]
+}
